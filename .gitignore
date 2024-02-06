@@ -1,0 +1,7 @@
+
+/DrumTranscriber-main/model/drum_transcriber.h5
+/noScribe-main/ffmpeg
+/noScribe-main/ffmpeg.exe
+/noScribe-main/models/pytorch_model.bin
+/noScribe-main/models/huggingface/hub/*/*
+/noScribe-main/models/torch/pyannote/speechbrain/*
