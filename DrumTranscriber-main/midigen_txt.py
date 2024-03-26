@@ -13,8 +13,8 @@ def convert_txt_to_midi(input_file, output_file, bpm):
   """
 
   ticks_per_beat = 480  # Standard MIDI ticks per beat
-  # ticks_per_second = ticks_per_beat * (bpm / 60)
-  ticks_per_second = int(ticks_per_beat * (bpm / 60))
+  ticks_per_second = ticks_per_beat * (bpm / 60)
+  # ticks_per_second = int(ticks_per_beat * bpm / 60)
   # Create a new MIDI file with a single track
   midi_file = mido.MidiFile()
   track = mido.MidiTrack()
@@ -57,7 +57,7 @@ def convert_txt_to_midi(input_file, output_file, bpm):
 # Example usage
 input_file = "waitforyou_plave.txt"  # Replace with your text file path
 output_file = "waitforyou_plave.mid"
-bpm = 95  # Set your desired BPM
+bpm = 127  # Set your desired BPM
 
 convert_txt_to_midi(input_file, output_file, bpm)
 print(f"Converted MIDI file saved to: {output_file}")
