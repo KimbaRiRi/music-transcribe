@@ -11,6 +11,10 @@ def convert_txt_to_midi(input_file, output_file, bpm):
       output_file: Path to save the converted MIDI file.
       bpm: Tempo (beats per minute) for the MIDI file.
   """
+
+  ticks_per_beat = 480  # Standard MIDI ticks per beat
+  # ticks_per_second = ticks_per_beat * (bpm / 60)
+  ticks_per_second = int(ticks_per_beat * (bpm / 60))
   # Create a new MIDI file with a single track
   midi_file = mido.MidiFile()
   track = mido.MidiTrack()
@@ -32,19 +36,20 @@ def convert_txt_to_midi(input_file, output_file, bpm):
     time, note = line.strip().split('\t')
 
     # Convert time string to seconds (assuming seconds format)
-    time_in_seconds = float(time)
+    time = float(time)
 
     # Convert note string to integer (MIDI note number)
     note = int(note)
 
     # Convert the time in seconds to ticks
-    ticks = mido.second2tick(time, midi_file.ticks_per_beat, tempo)
-
+    # ticks = mido.second2tick(time, midi_file.ticks_per_beat, tempo)
+    ticks = int(time * ticks_per_second)
+    # ticks = int(time * (ticks_per_beat * bpm / 60))
     # Add a note_on event
-    track.append(mido.Message('note_on', note=note, velocity=64, time=ticks, channel=9))
+    track.append(mido.Message('note_on', note=note, velocity=100, time=ticks, channel=9))
 
         # Add a note_off event (you may want to adjust the duration)
-    track.append(mido.Message('note_off', note=note, velocity=64, time=ticks + 1, channel=9))
+    track.append(mido.Message('note_off', note=note, velocity=0, time=ticks + 1, channel=9))
 
   # Save the converted MIDI file
   midi_file.save(output_file)
