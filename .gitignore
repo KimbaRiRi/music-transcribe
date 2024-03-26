@@ -5,3 +5,6 @@
 /noScribe-main/models/pytorch_model.bin
 /noScribe-main/models/huggingface/hub/*/*
 /noScribe-main/models/torch/pyannote/speechbrain/*
+MusicCodeRef
+DrumTranscriber-main/model
+ADTOF-master/adtof/models
