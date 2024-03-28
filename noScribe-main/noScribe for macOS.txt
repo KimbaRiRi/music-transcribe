@@ -1,0 +1,56 @@
+beta-version for macOS is available now!
+Thanks gernophil!
+
+README:
+
+noScribe is functional for macOS 11.0+ for Apple Silicon (arm64) and Intel-based Macs (x86_64).
+There are some workaround for macOS older then 11.0. If this applies to you, contact us at github.com/kaixxx/noScribe and we'll try to find a solution.
+Please use the Version matching your CPU architecture.
+We are still in activate development so there are some known (and unknown) bugs.
+
+Apple Silicon (arm64)
+INSTALLATION:
+Download and double-click the noScribe_arm64.dmg file.
+In the opened window drag noScribe and noScribeEdit into the link to you applications folder (labeled "drag both here to install")
+Start noScribe and/or noScribeEdit by double-clicking the app within your applications folder
+No further steps should be necessary
+
+Intel (x86_64)
+Unfortunately, we are currently not able to sign the x86_64 package correctly, so you will get a warning that noScribe (and noScribeEdit) are from unregistered Developers. We are currently trying to figure out, how to sign it correctly. Until we figure out, you have to manually allow noScribe(Edit) to be executed, if your Gatekeeper is active (which it mostly is by default).
+INSTALLATION:
+Download and double-click the noScribe_arm64.dmg file.
+In the opened window drag noScribe and noScribeEdit into the link to you applications folder (labeled "drag both here to install")
+Start noScribe and/or noScribeEdit by double-clicking the app within your applications folder
+You will get an error that noScribe(Edit) is from an unregistered Developer and noScribe won't start
+Go to Settings -> Privacy and Security -> Scroll down till you see a message stating noScribe was prevented from starting and click "open anyway"
+No further steps should be necessary
+
+Known Bugs:
+For some reasons torchaudio 2.1.0 using MPS in noScribe/PyAnnote (speaker recognition) leads to memory issues with systems having less then 16GB RAM. I am still trying to figure out, what's the reason for this. If you experience this, revert to 0.4.1 or use CPU instead of MPS.
+As mentioned the x86_64 version is not correctly signed.
+
+We are working on all of that. Please report any further bugs at github.com/kaixxx/noScribe
+
+# CHANGELOG
+0.4.4
+    - switched to torchaudio 2.2.0.
+    - optional beta version available (nightly): These contains developer versions of torch packages.
+    - optimized building command for noScribe and noScribeEdit to reduce number of unnecessary files. (Original bug: noScribe and noScribeEdit are packaged with some uneccessary files. This is due to the packaging process that needs to be further optimized.)
+    - added noScribe version to info.plist.
+    - a complete list of all used/packaged Python modules for this version is available at https://github.com/kaixxx/noScribe/tree/main/environments/pip-freeze/macOS/0.4.4.
+
+0.4.3
+    - switched to torchaudio 2.1.1: compatibility with x86_64 restored. (Original bug: noScribe 0.4.2 uses torchaudio 2.1.0. The x86_64 version has an incompatibility with noScribe/PyAnnote (speaker recognition). If you are on x86_64 and need this, please use noScribe 0.4.1. new torchaudio release is planned for Nov 15. Will try to update noScribe soon after this.)
+    - faster-whisper now uses 75% of all available cores (rounded down; x86_64) resp. of all available performance cores (rounded down; arm64).
+
+0.4.2
+    - switched to torchaudio 2.1.0: MPS results are finally usable and the same as with CPU. (Original bug: Using MPS in pyannote.audio is quite error-prone. This seems fixed in the new pyannote.audio, which we will implement soon.)
+
+0.4.1
+    First beta release
+    - Changed small model to 8bit to save some space.
+    - Solved Tcl/Tk bug for macOS Sonoma. (Original bug: The GUI of noScribe is based on the Tcl/Tk framework and the used Version has issues with macOS Sonoma. It's fully functional, but the window gets unresponsive quite often. If this happens, just click the title bar and it will work again. It happens quite often so you have to click the title bar quite often.)
+    - Moved some log messages from main window to log file.
+
+0.4
+    First alpha release
